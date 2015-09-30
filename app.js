@@ -20,9 +20,10 @@ app.get('/', function(req, res) {
 });
 
 io.on('connection', function(socket){
-  socket.on('message', function(msg){ 
-    console.log(msg)
-    io.emit('message', msg)
+  socket.on('message', function(UserMessageObject){ 
+    console.log(UserMessageObject.usr)
+    console.log(UserMessageObject.msg)
+    io.emit('message', UserMessageObject)
   })
 })
 

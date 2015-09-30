@@ -8,21 +8,27 @@ socket.on('connect', function(){
   console.log('knex')
 })
 
+
 $('form').submit(function(e){
   e.preventDefault();
   var message = $('#message').val()
+  var user = $('#user').val();
   console.log(message)
-  socket.emit('message', message)
-  $('form').trigger('reset');
+  socket.emit('message', { msg: message, usr: user })
+  // $('form').trigger('reset');
+  $('#message').val('');
+  $('.username').hide('slow');
 });
 
-socket.on('message', function(msg){
-  console.log(msg)
-  putOnPage(msg)
+socket.on('message', function(UserMessageObject){
+  console.log(UserMessageObject.msg)
+  console.log(UserMessageObject.usr)
+  putOnPage(UserMessageObject)
 })
 
-function putOnPage(msg){
-  var chatmessage = '<li>' + msg + '</li>'
+function putOnPage(UserMessageObject){
+  var chatmessage = '<li><strong>' + UserMessageObject.usr + ' says: </strong></li>'
+  chatmessage += '<li>' + UserMessageObject.msg + '</li>'
   $('#chatlog').append(chatmessage);
 
 }
