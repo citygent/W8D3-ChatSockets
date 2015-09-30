@@ -27,10 +27,11 @@ socket.on('message', function(UserMessageObject){
 })
 
 function putOnPage(UserMessageObject){
-  var chatmessage = '<li><strong>' + UserMessageObject.usr + ' says: </strong></li>'
-  chatmessage += '<li>' + UserMessageObject.msg + '</li>'
+  var chatmessage = '<li><strong>' + UserMessageObject.usr + ' says: </strong>'
+  chatmessage += '' + UserMessageObject.msg + '</li>'
   $('#chatlog').append(chatmessage);
-
+  $("#chat-container").animate({
+    'scrollTop': $("#chat-container")[0].scrollHeight}, 'slow')
 }
 
 });

@@ -23,11 +23,14 @@ form {
   border: none;
   padding: 10px;
 }
+#chat-container {
+  height: 400px;
+  overflow-y: scroll;
+}
 #chatlog {
   list-style: none;
   margin: 0 auto;
   width: 75%;
-  height: 90%;
 }
 .username {
 }
